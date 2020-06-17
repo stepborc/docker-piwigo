@@ -1,17 +1,20 @@
-version: "2"
+version: "2.1"
 services:
-
-  db:
-    image: mysql:latest
-    restart: always
+  mariadb:
+    image: linuxserver/mariadb
+    container_name: mariadb
     environment:
-      MYSQL_ROOT_PASSWORD: test
-      MYSQL_DATABASE: test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=ROOT_ACCESS_PASSWORD
+      - TZ=Europe/Berlin
+      - MYSQL_DATABASE=USER_DB_NAME #optional
+      - MYSQL_USER=MYSQL_USER #optional
+      - MYSQL_PASSWORD=DATABASE_PASSWORD #optional
     volumes:
       - /data_4TB/piwigo/db:/var/lib/mysql
-
+    ports:
+      - 3306:3306
   app:
     image: linuxserver/piwigo
     environment:
