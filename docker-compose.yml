@@ -15,8 +15,10 @@ services:
       - /data_4TB/piwigo/db:/var/lib/mysql
     ports:
       - 3306:3306
-  app:
+    restart: unles-stopped
+  piwigo:
     image: linuxserver/piwigo
+    container_name: piwigo
     environment:
       - PUID=1000
       - PGID=1000
