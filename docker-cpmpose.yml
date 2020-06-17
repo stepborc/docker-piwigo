@@ -1,0 +1,26 @@
+version: "2"
+services:
+
+  db:
+    image: mysql:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: test
+      MYSQL_DATABASE: test
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test
+    volumes:
+      - /data_4TB/piwigo/db:/var/lib/mysql
+
+  app:
+    image: linuxserver/piwigo
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Paris
+    volumes:
+      - /data_4TB/piwigo/conf:/config
+      - /data_4TB/piwigo/pics:/pictures
+    ports:
+      - 9988:80
+    restart: unless-stopped
