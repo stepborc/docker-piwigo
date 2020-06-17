@@ -2,7 +2,7 @@ version: "2"
 services:
 
   db:
-    image: mysql:latest
+    image: linuxserver/mariadb:latest
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: test
@@ -10,7 +10,7 @@ services:
       MYSQL_USER: test
       MYSQL_PASSWORD: test
     volumes:
-      - /data_4TB/piwigo/db:/var/lib/mysql
+      - /data_4TB/piwigo/db:/var/lib/mariadb
 
   app:
     image: linuxserver/piwigo
