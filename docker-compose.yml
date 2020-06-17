@@ -15,7 +15,7 @@ services:
       - /data_4TB/piwigo/db:/var/lib/mysql
     ports:
       - 3306:3306
-    restart: unles-stopped
+    restart: unless-stopped
   piwigo:
     image: linuxserver/piwigo
     container_name: piwigo
